@@ -1,0 +1,32 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /api
+spring:
+  datasource:
+    # JDBC \u8FDE\u63A5\u76F8\u5173\u914D\u7F6E
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/library-ms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
+    username: libraryms
+    password: 123456
+    # \u6570\u636E\u5E93\u8FDE\u63A5\u6C60\u76F8\u5173\u914D\u7F6E
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      connection-test-query: SELECT 1 FROM DUAL
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: LibraryManageSystem
+      max-lifetime: 60000
+      connection-timeout: 30000
+
+mybatis-plus:
+  global-config:
+    # \u6570\u636E\u5E93\u76F8\u5173\u914D\u7F6E
+    db-config:
+      # \u4E3B\u952E\u7C7B\u578B\u9ED8\u8BA4\u8BBE\u7F6E\u4E3A\u81EA\u52A8\u9012\u589E
+      id-type: AUTO
+  configuration:
+    # \u5F00\u542F\u81EA\u52A8\u9A7C\u5CF0\u547D\u540D\u89C4\u5219\u6620\u5C04
+    map-underscore-to-camel-case: true
