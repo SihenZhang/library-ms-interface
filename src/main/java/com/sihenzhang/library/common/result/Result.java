@@ -12,12 +12,12 @@ public class Result implements Serializable {
 
     private static final long serialVersionUID = -1050577320533946077L;
 
-    private int code;
+    private int status;
     private String message;
     private Object data;
 
-    public Result(int code, String message) {
-        this(code, message, null);
+    public Result(int status, String message) {
+        this(status, message, null);
     }
 
 }

@@ -14,7 +14,9 @@ import java.util.Date;
 public class TokenUtil {
 
     private static final RSA rsa = new RSA();
+
     private static final String ISSUER = "sihenzhang";
+
     private static final long EXPIRATION = 24 * 60 * 60 * 1000;
 
     public static String sign(SysUser user) {

@@ -1,7 +1,7 @@
 package com.sihenzhang.library.system.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,24 +13,17 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SysUser implements Serializable {
+@TableName("sys_user")
+public class SysUserVO implements Serializable {
 
-    private static final long serialVersionUID = 255738425073141938L;
+    private static final long serialVersionUID = -5629713969279486975L;
 
     @TableId
     private Long userId;
 
     private String username;
 
-    private String password;
-
-    private String salt;
-
     private String phone;
 
     private Boolean active;
-
-    @TableLogic
-    private Boolean status;
-
 }

@@ -19,21 +19,14 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
         }
-        response.setCharacterEncoding("utf-8");
-        String token = request.getHeader("token");
-        if (token != null) {
-            boolean result = TokenUtil.verify(token);
-            if (result) {
-                System.out.println("通过拦截器");
-                return true;
-            }
-        }
+        String token = request.getHeader("Authorization");
+        if (token != null && TokenUtil.verify(token))
+            return true;
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         try {
             JSONObject json = JSONUtil.parseObj(ResultFactory.buildResult(ResultCode.UNAUTHORIZED, "token认证失败", null));
             response.getWriter().append(json.toString());
-            System.out.println("认证失败，未通过拦截器");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(500);
