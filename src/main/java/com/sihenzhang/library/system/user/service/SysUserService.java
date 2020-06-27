@@ -1,5 +1,6 @@
 package com.sihenzhang.library.system.user.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -13,5 +14,9 @@ public interface SysUserService extends IService<SysUser> {
     boolean isExist(String username);
 
     IPage<SysUserVO> selectUserPage(Page<SysUserVO> page);
+
+    IPage<SysUserVO> selectUserPage(Page<SysUserVO> page, Wrapper<SysUserVO> wrapper);
+
+    SysUserVO selectUserById(Long id);
 
 }

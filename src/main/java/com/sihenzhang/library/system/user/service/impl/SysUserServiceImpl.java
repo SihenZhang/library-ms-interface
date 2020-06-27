@@ -1,5 +1,6 @@
 package com.sihenzhang.library.system.user.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -23,6 +24,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     public IPage<SysUserVO> selectUserPage(Page<SysUserVO> page) {
         return this.baseMapper.selectPageVO(page);
+    }
+
+    public IPage<SysUserVO> selectUserPage(Page<SysUserVO> page, Wrapper<SysUserVO> wrapper) {
+        return this.baseMapper.selectPageVOWithWrapper(page, wrapper);
+    }
+
+    public SysUserVO selectUserById(Long id) {
+        return this.baseMapper.selectVOById(id);
     }
 
 }

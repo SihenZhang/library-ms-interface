@@ -41,7 +41,7 @@ public class LoginController {
         if (password.equals(userInDB.getPassword())) {
             String token = TokenUtil.sign(user);
             log.info("用户 {} 登录成功", user.getUsername());
-            return ResultFactory.buildSuccessResult(Dict.create().set("token", token));
+            return ResultFactory.buildSuccessResult("登录成功", Dict.create().set("token", token));
         }
         else
             return ResultFactory.buildFailResult("用户名或密码错误");

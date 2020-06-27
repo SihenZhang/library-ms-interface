@@ -4,12 +4,11 @@ server:
     context-path: /api
 
 spring:
+  # 多环境配置
+  profiles:
+    active: dev
   datasource:
-    # JDBC 连接相关配置
-    # driver-class-name: com.mysql.cj.jdbc.Driver
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    # url: jdbc:mysql://localhost:3306/library-ms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
-    url: jdbc:p6spy:mysql://localhost:3306/library-ms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
+    # JDBC 连接相关配置（其它配置参见多环境配置）
     username: libraryms
     password: 123456
     # 数据库连接池相关配置
@@ -33,3 +32,19 @@ mybatis-plus:
   configuration:
     # 开启自动驼峰命名规则映射
     map-underscore-to-camel-case: true
+---
+# 开发环境配置
+spring:
+  profiles: dev
+  datasource:
+    # 开发环境下使用 p6spy 执行 SQL 分析打印
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://localhost:3306/library-ms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
+---
+# 生产环境配置
+spring:
+  profiles: prod
+  datasource:
+    # 使用 p6spy 会有性能损耗，因此在生产环境中使用 MySQL 驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/library-ms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8

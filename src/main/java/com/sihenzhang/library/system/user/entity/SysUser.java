@@ -1,7 +1,6 @@
 package com.sihenzhang.library.system.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,11 +25,10 @@ public class SysUser implements Serializable {
 
     private String salt;
 
+    private String email;
+
     private String phone;
 
     private Boolean active;
-
-    @TableLogic
-    private Boolean status;
 
 }

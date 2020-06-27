@@ -23,7 +23,10 @@ public class SysUserVO implements Serializable {
 
     private String username;
 
+    private String email;
+
     private String phone;
 
     private Boolean active;
+
 }
