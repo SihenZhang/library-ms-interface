@@ -13,12 +13,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@TableName("sys_user")
 public class SysUserVO implements Serializable {
 
     private static final long serialVersionUID = -5629713969279486975L;
 
-    @TableId
     private Long userId;
 
     private String username;

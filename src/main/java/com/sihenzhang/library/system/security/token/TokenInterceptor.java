@@ -1,5 +1,6 @@
 package com.sihenzhang.library.system.security.token;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.sihenzhang.library.common.result.ResultCode;
@@ -20,12 +21,12 @@ public class TokenInterceptor implements HandlerInterceptor {
             return true;
         }
         String token = request.getHeader("Authorization");
-        if (token != null && TokenUtil.verify(token))
+        if (!StrUtil.isBlank(token) && TokenUtil.verify(token))
             return true;
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         try {
-            JSONObject json = JSONUtil.parseObj(ResultFactory.buildResult(ResultCode.UNAUTHORIZED, "token认证失败", null));
+            JSONObject json = JSONUtil.parseObj(ResultFactory.buildResult(ResultCode.UNAUTHORIZED, "用户认证失败，请重新登录", null));
             response.getWriter().append(json.toString());
         } catch (Exception e) {
             e.printStackTrace();

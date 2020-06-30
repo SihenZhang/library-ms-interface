@@ -15,7 +15,11 @@
     <description>A library manage system designed for my own Database Principle course.</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
+        <mybatis-plus-boot-starter.version>3.3.2</mybatis-plus-boot-starter.version>
+        <hutool-all.version>5.3.8</hutool-all.version>
+        <java-jwt.version>3.10.3</java-jwt.version>
+        <p6spy.version>3.9.0</p6spy.version>
     </properties>
 
     <dependencies>
@@ -26,18 +30,18 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.2</version>
+            <version>${mybatis-plus-boot-starter.version}</version>
         </dependency>
 
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.3.8</version>
+            <version>${hutool-all.version}</version>
         </dependency>
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
-            <version>3.10.3</version>
+            <version>${java-jwt.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -52,7 +56,7 @@
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
-            <version>3.9.0</version>
+            <version>${p6spy.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
