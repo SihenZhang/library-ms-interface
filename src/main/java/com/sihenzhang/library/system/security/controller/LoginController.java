@@ -33,7 +33,7 @@ public class LoginController {
         // 获取数据库中的同名用户
         SysUser userInDB = sysUserService.getByUsername(username);
         // 用户未被激活
-        if (!userInDB.getActive())
+        if (!userInDB.getStatus())
             return ResultFactory.buildFailResult("用户未被激活");
         // 对用户输入的密码加盐后加密
         String password = SecureUtil.md5(user.getPassword() + userInDB.getSalt());
@@ -42,8 +42,7 @@ public class LoginController {
             String token = TokenUtil.sign(user);
             log.info("用户 {} 登录成功", user.getUsername());
             return ResultFactory.buildSuccessResult("登录成功", Dict.create().set("token", token));
-        }
-        else
+        } else
             return ResultFactory.buildFailResult("用户名或密码错误");
     }
 

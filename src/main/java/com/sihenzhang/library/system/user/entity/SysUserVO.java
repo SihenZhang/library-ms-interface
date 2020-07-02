@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Builder
 public class SysUserVO implements Serializable {
 
-    private static final long serialVersionUID = -5629713969279486975L;
+    private static final long serialVersionUID = -2220187565374171595L;
 
     private Long userId;
 
@@ -25,6 +25,6 @@ public class SysUserVO implements Serializable {
 
     private String phone;
 
-    private Boolean active;
+    private Boolean status;
 
 }

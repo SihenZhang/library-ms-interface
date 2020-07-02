@@ -44,9 +44,9 @@ public class SysUserController {
         return ResultFactory.buildSuccessResult("获取用户列表成功", data);
     }
 
-    @PutMapping("/user/{id}/active/{active}")
-    public Result changeActive(@PathVariable("id") Long id, @PathVariable("active") Boolean active) {
-        SysUser newUser = SysUser.builder().userId(id).active(active).build();
+    @PutMapping("/user/{id}/status/{status}")
+    public Result changeStatus(@PathVariable("id") Long id, @PathVariable("status") Boolean status) {
+        SysUser newUser = SysUser.builder().userId(id).status(status).build();
         boolean success = sysUserService.updateById(newUser);
         if (success)
             return ResultFactory.buildSuccessResult("修改用户状态成功", null);

@@ -12,12 +12,12 @@ import org.apache.ibatis.annotations.Select;
 
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
-    @Select("SELECT user_id,username,email,phone,active FROM sys_user")
+    @Select("SELECT user_id,username,email,phone,status FROM sys_user")
     IPage<SysUserVO> selectPageVO(Page<SysUserVO> page);
 
-    @Select("SELECT user_id,username,email,phone,active FROM sys_user ${ew.customSqlSegment}")
+    @Select("SELECT user_id,username,email,phone,status FROM sys_user ${ew.customSqlSegment}")
     IPage<SysUserVO> selectPageVOWithWrapper(Page<SysUserVO> page, @Param(Constants.WRAPPER) Wrapper<SysUserVO> wrapper);
 
-    @Select("SELECT user_id,username,email,phone,active FROM sys_user WHERE user_id=#{id}")
+    @Select("SELECT user_id,username,email,phone,status FROM sys_user WHERE user_id=#{id}")
     SysUserVO selectVOById(Long id);
 }

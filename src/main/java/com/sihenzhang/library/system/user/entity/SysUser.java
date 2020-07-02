@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Builder
 public class SysUser implements Serializable {
 
-    private static final long serialVersionUID = 255738425073141938L;
+    private static final long serialVersionUID = -5321778646163860005L;
 
     @TableId
     private Long userId;
@@ -29,6 +29,6 @@ public class SysUser implements Serializable {
 
     private String phone;
 
-    private Boolean active;
+    private Boolean status;
 
 }

@@ -45,6 +45,6 @@ spring:
 spring:
   profiles: prod
   datasource:
-    # 使用 p6spy 会有性能损耗，因此在生产环境中使用 MySQL 驱动
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 使用 p6spy 会有性能损耗，因此在生产环境中使用 MariaDB 驱动（MariaDB 驱动体积比 MySQL 驱动体积小很多，且 MariaDB 驱动也支持 MySQL）
+    driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mysql://localhost:3306/library-ms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
