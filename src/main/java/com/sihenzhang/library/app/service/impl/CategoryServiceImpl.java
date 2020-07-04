@@ -1,7 +1,6 @@
 package com.sihenzhang.library.app.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import cn.hutool.core.lang.Dict;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sihenzhang.library.app.entity.Category;
 import com.sihenzhang.library.app.entity.CategoryVO;
@@ -18,20 +17,25 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 
-    public IPage<CategoryVO> getAllCategories(Integer type, Integer current, Integer size) {
+    public Dict getAllCategories(Integer type, Integer current, Integer size) {
         var categoriesList = list();
         var categories = categoriesList.stream().map(CategoryVO::new).collect(Collectors.toList());
         var keyCategories = categories.stream().collect(Collectors.toMap(CategoryVO::getCatId, Function.identity()));
-        var result = getTreeList(keyCategories, categories, type);
-        IPage<CategoryVO> resultPage = new Page<>(current, size, result.size());
-        resultPage.setRecords(result.stream().skip((current - 1) * size).limit(size).collect(Collectors.toList()));
-        return resultPage;
+        var categoriesResult = getTreeList(keyCategories, categories, type);
+        var result = Dict.create();
+        result.set("total", categoriesResult.size());
+        result.set("current", current);
+        if (size != null) {
+            result.set("categories", categoriesResult.stream().skip((current - 1) * size).limit(size).collect(Collectors.toList()));
+        } else {
+            result.set("categories", categoriesResult);
+        }
+        return result;
     }
 
     private List<CategoryVO> getTreeList(Map<Long, CategoryVO> keyCategories, List<CategoryVO> categories, Integer type) {
         List<CategoryVO> result = new ArrayList<>();
-        for (var key : keyCategories.keySet()) {
-            var cat = keyCategories.get(key);
+        for (var cat : categories) {
             if (isDelete(keyCategories, cat))
                 continue;
             if (cat.getCatPid() == null)

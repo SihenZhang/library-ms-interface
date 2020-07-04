@@ -45,7 +45,7 @@ public class SysUserController {
     }
 
     @PutMapping("/user/{id}/status/{status}")
-    public Result changeStatus(@PathVariable("id") Long id, @PathVariable("status") Boolean status) {
+    public Result changeStatus(@PathVariable Long id, @PathVariable Boolean status) {
         SysUser newUser = SysUser.builder().userId(id).status(status).build();
         boolean success = sysUserService.updateById(newUser);
         if (success)
@@ -71,13 +71,13 @@ public class SysUserController {
     }
 
     @GetMapping("/user/{id}")
-    public Result getById(@PathVariable("id") Long id) {
+    public Result getById(@PathVariable Long id) {
         SysUserVO userVO = sysUserService.selectUserById(id);
         return ResultFactory.buildSuccessResult("查询用户信息成功", userVO);
     }
 
     @PutMapping("/user/{id}")
-    public Result editUser(@PathVariable("id") Long id, @RequestBody SysUser user) {
+    public Result editUser(@PathVariable Long id, @RequestBody SysUser user) {
         if (StrUtil.isBlank(user.getEmail()))
             user.setEmail(null);
         if (StrUtil.isBlank(user.getPhone()))
@@ -85,13 +85,13 @@ public class SysUserController {
         user.setUserId(id);
         boolean success = sysUserService.updateById(user);
         if (success)
-            return ResultFactory.buildSuccessResult("更新用户成功", null);
+            return ResultFactory.buildSuccessResult("编辑用户成功", null);
         else
-            return ResultFactory.buildFailResult("更新用户失败");
+            return ResultFactory.buildFailResult("编辑用户失败");
     }
 
     @DeleteMapping("/user/{id}")
-    public Result removeUserById(@PathVariable("id") Long id) {
+    public Result removeUserById(@PathVariable Long id) {
         boolean success = sysUserService.removeById(id);
         if (success)
             return ResultFactory.buildSuccessResult("删除用户成功", null);
