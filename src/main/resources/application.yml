@@ -29,6 +29,9 @@ mybatis-plus:
     db-config:
       # 主键类型默认设置为自动递增
       id-type: AUTO
+      # 逻辑删除字段默认设置未删除值为空，删除值为删除时的时间
+      logic-not-delete-value: 'NULL'
+      logic-delete-value: NOW()
   configuration:
     # 开启自动驼峰命名规则映射
     map-underscore-to-camel-case: true

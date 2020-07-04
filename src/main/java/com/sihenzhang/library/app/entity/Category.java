@@ -3,6 +3,7 @@ package com.sihenzhang.library.app.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,8 @@ public class Category implements Serializable {
 
     private Integer catLevel;
 
-    @TableLogic(value = "null", delval = "now()")
+    @TableLogic
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocalDateTime catDeleted;
 
     @TableField(exist = false)
