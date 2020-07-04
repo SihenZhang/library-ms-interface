@@ -20,4 +20,5 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 
     @Select("SELECT user_id,username,email,phone,status FROM sys_user WHERE user_id=#{id}")
     SysUserVO selectVOById(Long id);
+
 }

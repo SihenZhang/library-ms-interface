@@ -1,13 +1,18 @@
 package com.sihenzhang.library.app.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,20 +20,23 @@ import java.io.Serializable;
 @Builder
 public class Category implements Serializable {
 
-    private static final long serialVersionUID = -1179259928358785674L;
-
     @TableId
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long catId;
 
     private String catSymbol;
 
     private String catName;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long catPid;
 
     private Integer catLevel;
 
-    @TableLogic(value = "false", delval = "true")
-    private Boolean catDeleted;
+    @TableLogic(value = "null", delval = "now()")
+    private LocalDateTime catDeleted;
+
+    @TableField(exist = false)
+    private List<Category> children;
 
 }

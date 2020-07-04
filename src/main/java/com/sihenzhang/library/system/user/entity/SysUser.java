@@ -1,6 +1,8 @@
 package com.sihenzhang.library.system.user.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,9 +16,8 @@ import java.io.Serializable;
 @Builder
 public class SysUser implements Serializable {
 
-    private static final long serialVersionUID = -5321778646163860005L;
-
     @TableId
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
     private String username;

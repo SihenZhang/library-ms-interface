@@ -6,6 +6,6 @@ import com.sihenzhang.library.app.entity.Category;
 
 public interface CategoryService extends IService<Category> {
 
-    Dict getAllCategories(Integer type, Integer current, Integer size);
+    Dict getAllCategories(Integer level, Integer current, Integer size);
 
 }
