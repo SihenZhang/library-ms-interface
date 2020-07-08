@@ -1,6 +1,7 @@
 package com.sihenzhang.library.app.service.impl;
 
 import cn.hutool.core.lang.Dict;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sihenzhang.library.app.entity.Category;
 import com.sihenzhang.library.app.mapper.CategoryMapper;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 
     public Dict getAllCategories(Integer level, Integer current, Integer size) {
-        var categories = list();
+        var categories = list(Wrappers.<Category>lambdaQuery().orderByAsc(Category::getCatSymbol));
         var keyCategories = categories.stream().collect(Collectors.toMap(Category::getCatId, Function.identity()));
         var categoriesResult = getTreeList(keyCategories, categories, level);
         var result = Dict.create();

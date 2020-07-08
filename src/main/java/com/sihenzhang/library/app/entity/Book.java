@@ -11,34 +11,38 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Category implements Serializable {
+public class Book {
 
     @TableId
     @JsonSerialize(using = ToStringSerializer.class)
-    private Long catId;
+    private Long bookId;
 
-    private String catSymbol;
+    private String bookName;
 
-    private String catName;
+    private String bookAuthor;
 
     @JsonSerialize(using = ToStringSerializer.class)
-    private Long catPid;
-
-    private Integer catLevel;
-
-    @TableLogic
-    @JsonIgnore
-    private LocalDateTime catDeleted;
+    private Long catId;
 
     @TableField(exist = false)
-    private List<Category> children;
+    private String catSymbol;
+
+    @TableField(exist = false)
+    private String catName;
+
+    private Integer bookTotal;
+
+    private Integer bookLent;
+
+    @TableLogic
+    @TableField(select = false)
+    @JsonIgnore
+    private LocalDateTime bookDeleted;
 
 }

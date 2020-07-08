@@ -22,9 +22,9 @@ public class CategoryController {
     public Result list(@RequestParam(defaultValue = "3") Integer level, @RequestParam(defaultValue = "1") Integer current, @RequestParam(required = false) Integer size) {
         try {
             var data = categoryService.getAllCategories(level, current, size);
-            return ResultFactory.buildSuccessResult("获取分类成功", data);
+            return ResultFactory.buildSuccessResult("获取分类列表成功", data);
         } catch (Exception e) {
-            return ResultFactory.buildFailResult("获取分类失败");
+            return ResultFactory.buildFailResult("获取分类列表失败");
         }
     }
 
