@@ -66,7 +66,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/category/{id}")
-    public Result deleteCategory(@PathVariable Long id) {
+    public Result removeCategoryById(@PathVariable Long id) {
         try {
             var success = categoryService.removeById(id);
             if (success)

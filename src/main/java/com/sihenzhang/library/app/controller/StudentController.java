@@ -33,10 +33,10 @@ public class StudentController {
             else {
                 switch (queryType) {
                     case 0:
-                        resultPage = studentService.page(page, Wrappers.<Student>lambdaQuery().like(Student::getStuName, query));
+                        resultPage = studentService.page(page, Wrappers.<Student>lambdaQuery().like(Student::getStuNum, query));
                         break;
                     case 1:
-                        resultPage = studentService.page(page, Wrappers.<Student>lambdaQuery().like(Student::getStuNum, query));
+                        resultPage = studentService.page(page, Wrappers.<Student>lambdaQuery().like(Student::getStuName, query));
                         break;
                     case 2:
                         resultPage = studentService.page(page, Wrappers.<Student>lambdaQuery().like(Student::getStuDept, query));
@@ -79,7 +79,7 @@ public class StudentController {
     }
 
     @PutMapping("/student/{id}")
-    public Result editBook(@PathVariable Long id, @RequestBody Student student) {
+    public Result editStudent(@PathVariable Long id, @RequestBody Student student) {
         try {
             student.setStuId(id);
             var success = studentService.updateById(student);
@@ -93,7 +93,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/student/{id}")
-    public Result deleteBook(@PathVariable Long id) {
+    public Result removeStudentById(@PathVariable Long id) {
         try {
             var success = studentService.removeById(id);
             if (success)

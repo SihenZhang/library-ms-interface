@@ -11,7 +11,8 @@ import org.apache.ibatis.annotations.Select;
 
 public interface BookMapper extends BaseMapper<Book> {
 
-    @Select("SELECT book_id,book_name,book_author,book.cat_id,cat_symbol,cat_name,book_total,book_lent FROM book LEFT JOIN category ON book.cat_id=category.cat_id ${ew.customSqlSegment}")
+    @Select("SELECT book_id,book_name,book_author,book.cat_id,cat_symbol,cat_name,book_total,book_lent FROM book " +
+            "LEFT JOIN category ON book.cat_id=category.cat_id ${ew.customSqlSegment}")
     IPage<Book> selectPageVO(Page<Book> page, @Param(Constants.WRAPPER) Wrapper<Book> wrapper);
 
 }

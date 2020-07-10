@@ -93,7 +93,7 @@ public class BookController {
     }
 
     @DeleteMapping("/book/{id}")
-    public Result deleteBook(@PathVariable Long id) {
+    public Result removeBookById(@PathVariable Long id) {
         try {
             var success = bookService.removeById(id);
             if (success)

@@ -11,9 +11,11 @@ import com.sihenzhang.library.common.result.ResultCode;
 import com.sihenzhang.library.common.result.ResultFactory;
 import com.sihenzhang.library.system.user.entity.SysUser;
 import com.sihenzhang.library.system.user.service.SysUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 public class SysUserController {
 

@@ -11,6 +11,12 @@ spring:
     # JDBC 连接相关配置（其它配置参见多环境配置）
     username: libraryms
     password: 123456
+    # 数据库初始化相关配置
+    initialization-mode: always
+    schema:
+    - "classpath:database/schema.sql"
+    data:
+    - "classpath:database/data.sql"
     # 数据库连接池相关配置
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -30,7 +36,7 @@ mybatis-plus:
       # 主键类型默认设置为自动递增
       id-type: AUTO
       # 逻辑删除字段默认设置未删除值为空，删除值为删除时的时间
-      logic-not-delete-value: 'NULL'
+      logic-not-delete-value: "NULL"
       logic-delete-value: NOW()
   configuration:
     # 开启自动驼峰命名规则映射
