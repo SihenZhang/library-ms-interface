@@ -9,6 +9,10 @@ public interface SysUserService extends IService<SysUser> {
 
     boolean isExist(String username);
 
+    boolean saveUser(SysUser user);
+
     SysUser getByIdWithoutPassword(Long id);
+
+    boolean updateUser(SysUser user);
 
 }

@@ -1,9 +1,7 @@
 package com.sihenzhang.library.system.user.controller;
 
 import cn.hutool.core.lang.Dict;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sihenzhang.library.common.result.Result;
@@ -11,18 +9,16 @@ import com.sihenzhang.library.common.result.ResultCode;
 import com.sihenzhang.library.common.result.ResultFactory;
 import com.sihenzhang.library.system.user.entity.SysUser;
 import com.sihenzhang.library.system.user.service.SysUserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
 @RestController
 public class SysUserController {
 
     private SysUserService sysUserService;
 
     @Autowired
-    public void setSysUserVOService(SysUserService sysUserService) {
+    public void setSysUserService(SysUserService sysUserService) {
         this.sysUserService = sysUserService;
     }
 
@@ -62,14 +58,7 @@ public class SysUserController {
     @PostMapping("/user")
     public Result addUser(@RequestBody SysUser user) {
         try {
-            if (StrUtil.isBlank(user.getEmail()))
-                user.setEmail(null);
-            if (StrUtil.isBlank(user.getPhone()))
-                user.setPhone(null);
-            var salt = IdUtil.fastSimpleUUID();
-            user.setPassword(SecureUtil.md5(user.getPassword() + salt));
-            user.setSalt(salt);
-            var success = sysUserService.save(user);
+            var success = sysUserService.saveUser(user);
             if (success)
                 return ResultFactory.buildResult(ResultCode.CREATED, "添加用户成功", null);
             else
@@ -92,12 +81,8 @@ public class SysUserController {
     @PutMapping("/user/{id}")
     public Result editUser(@PathVariable Long id, @RequestBody SysUser user) {
         try {
-            if (StrUtil.isBlank(user.getEmail()))
-                user.setEmail(null);
-            if (StrUtil.isBlank(user.getPhone()))
-                user.setPhone(null);
             user.setUserId(id);
-            var success = sysUserService.updateById(user);
+            var success = sysUserService.updateUser(user);
             if (success)
                 return ResultFactory.buildSuccessResult("编辑用户成功", null);
             else

@@ -70,16 +70,6 @@ public class LeaseController {
         }
     }
 
-    @GetMapping("/lease/{id}")
-    public Result getById(@PathVariable Long id) {
-        try {
-            var lease = leaseService.getById(id);
-            return ResultFactory.buildSuccessResult("查询借阅信息成功", lease);
-        } catch (Exception e) {
-            return ResultFactory.buildFailResult("查询借阅信息失败");
-        }
-    }
-
     @PutMapping("/lease/{id}")
     public Result returnBook(@PathVariable Long id, @RequestBody Lease lease) {
         try {
